@@ -5,11 +5,11 @@ using System.Web.Http;
 
 namespace Project.WebAPI
 {
-    public class UserController : ApiController
+    public class CompanyController : ApiController
     {
         #region Constructors
 
-        public UserController(UserService service)
+        public CompanyController(CompanyService service)
         {
             this.Service = service;
         }
@@ -18,14 +18,14 @@ namespace Project.WebAPI
 
         #region Properties
 
-        public UserService Service { get; set; }
+        public CompanyService Service { get; set; }
 
         #endregion Properties
 
         #region Methods
 
         [HttpGet]
-        [Route("users")]
+        [Route("companies")]
         public HttpResponseMessage Get()
         {
             return Request.CreateResponse(Service.Get());
