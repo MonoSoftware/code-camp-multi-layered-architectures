@@ -47,6 +47,7 @@ namespace Project.Service.Tests
             public UserServiceFixture()
             {
                 UserRepository = new Mock<UserRepository>();
+                UserRepository.Setup(p => p.Get()).Returns(new List<UserEntity>());
 
                 Target = new UserService(UserRepository.Object);
             }
