@@ -1,15 +1,16 @@
-﻿using Project.DAL.Entities;
-using Project.Repository;
+﻿using Project.Models.Common;
+using Project.Repository.Common;
+using Project.Service.Common;
 using System;
 using System.Collections.Generic;
 
 namespace Project.Service
 {
-    public class UserService
+    public class UserService : IUserService
     {
         #region Constructors
 
-        public UserService(UserRepository repository)
+        public UserService(IUserRepository repository)
         {
             this.Repository = repository;
         }
@@ -18,13 +19,13 @@ namespace Project.Service
 
         #region Properties
 
-        protected UserRepository Repository { get; private set; }
+        protected IUserRepository Repository { get; private set; }
 
         #endregion Properties
 
         #region Methods
 
-        public List<UserEntity> Get()
+        public List<IUser> Get()
         {
             return Repository.Get();
         }

@@ -1,10 +1,14 @@
-﻿using Project.DAL.Entities;
+﻿using AutoMapper;
+using Project.DAL.Entities;
+using Project.Models;
+using Project.Models.Common;
+using Project.Repository.Common;
 using System;
 using System.Collections.Generic;
 
 namespace Project.Repository
 {
-    public class CompanyRepository
+    public class CompanyRepository : ICompanyRepository
     {
         #region Constructors
 
@@ -15,13 +19,15 @@ namespace Project.Repository
             {
                 Id = Guid.NewGuid(),
                 Name = "Company 1",
-                Description = "Company 1 Description"
+                Description = "Company 1 Description",
+                Balance = 100100.10
             });
             Storage.Add(new CompanyEntity()
             {
                 Id = Guid.NewGuid(),
                 Name = "Company 2",
-                Description = "Company 2 Description"
+                Description = "Company 2 Description",
+                Balance = -100000.10
             });
         }
 
@@ -39,9 +45,9 @@ namespace Project.Repository
 
         #region Methods
 
-        public List<CompanyEntity> Get()
+        public List<ICompany> Get()
         {
-            return CompanyRepository.Storage;
+            return new List<ICompany>(Mapper.Map<List<Company>>(CompanyRepository.Storage));
         }
 
         #endregion Methods

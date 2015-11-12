@@ -6,6 +6,7 @@ namespace Project.DAL.Entities
     {
         #region Properties
 
+        public double Balance { get; set; }
         public string Description { get; set; }
 
         public Guid Id { get; set; }

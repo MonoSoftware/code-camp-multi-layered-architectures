@@ -1,5 +1,7 @@
-﻿using Project.Service;
+﻿using AutoMapper;
+using Project.Service.Common;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Web.Http;
 
@@ -9,7 +11,7 @@ namespace Project.WebAPI
     {
         #region Constructors
 
-        public UserController(UserService service)
+        public UserController(IUserService service)
         {
             this.Service = service;
         }
@@ -18,7 +20,7 @@ namespace Project.WebAPI
 
         #region Properties
 
-        public UserService Service { get; set; }
+        public IUserService Service { get; set; }
 
         #endregion Properties
 
@@ -28,9 +30,30 @@ namespace Project.WebAPI
         [Route("users")]
         public HttpResponseMessage Get()
         {
-            return Request.CreateResponse(Service.Get());
+            return Request.CreateResponse(Mapper.Map<List<User>>(Service.Get()));
         }
 
         #endregion Methods
+
+        #region Classes
+
+        public class User
+        {
+            #region Properties
+
+            public string Description { get; set; }
+
+            public string FirstName { get; set; }
+
+            public Guid Id { get; set; }
+
+            public string LastName { get; set; }
+
+            public string UserName { get; set; }
+
+            #endregion Properties
+        }
+
+        #endregion Classes
     }
 }

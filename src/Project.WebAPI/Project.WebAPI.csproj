@@ -38,6 +38,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=4.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.1.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -128,6 +132,14 @@
     <ProjectReference Include="..\Project.DAL\Project.DAL.csproj">
       <Project>{9ac75e17-a92d-44bb-8d3a-fc93f96e2636}</Project>
       <Name>Project.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Project.Models.Common\Project.Models.Common.csproj">
+      <Project>{14935ce6-162b-4585-a9f5-344ab8c31dc0}</Project>
+      <Name>Project.Models.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Project.Service.Common\Project.Service.Common.csproj">
+      <Project>{cf1449f9-409b-4102-b7a9-a4a35d7e4aa5}</Project>
+      <Name>Project.Service.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Project.Service\Project.Service.csproj">
       <Project>{05897b00-5b3c-458d-affe-b802b7bb5d05}</Project>

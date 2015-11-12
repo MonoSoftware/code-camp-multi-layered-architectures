@@ -1,15 +1,16 @@
-﻿using Project.DAL.Entities;
-using Project.Repository;
+﻿using Project.Models.Common;
+using Project.Repository.Common;
+using Project.Service.Common;
 using System;
 using System.Collections.Generic;
 
 namespace Project.Service
 {
-    public class CompanyService
+    public class CompanyService : ICompanyService
     {
         #region Constructors
 
-        public CompanyService(CompanyRepository repository)
+        public CompanyService(ICompanyRepository repository)
         {
             this.Repository = repository;
         }
@@ -18,13 +19,13 @@ namespace Project.Service
 
         #region Properties
 
-        protected CompanyRepository Repository { get; private set; }
+        protected ICompanyRepository Repository { get; private set; }
 
         #endregion Properties
 
         #region Methods
 
-        public List<CompanyEntity> Get()
+        public List<ICompany> Get()
         {
             return Repository.Get();
         }

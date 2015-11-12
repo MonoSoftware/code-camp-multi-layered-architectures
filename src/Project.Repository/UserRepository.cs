@@ -1,10 +1,14 @@
-﻿using Project.DAL.Entities;
+﻿using AutoMapper;
+using Project.DAL.Entities;
+using Project.Models;
+using Project.Models.Common;
+using Project.Repository.Common;
 using System;
 using System.Collections.Generic;
 
 namespace Project.Repository
 {
-    public class UserRepository
+    public class UserRepository : IUserRepository
     {
         #region Constructors
 
@@ -16,15 +20,19 @@ namespace Project.Repository
                 Id = Guid.NewGuid(),
                 UserName = "JohnD",
                 FirstName = "John",
-                LastName = "Doe"
+                LastName = "Doe",
+                Password = "JohnDPassword"
             });
             Storage.Add(new UserEntity()
             {
                 Id = Guid.NewGuid(),
                 UserName = "JaneR",
                 FirstName = "Jane",
-                LastName = "Roe"
+                LastName = "Roe",
+                Password = "JaneRPassword"
             });
+
+            Mapper.CreateMap<UserEntity, IUser>().ReverseMap();
         }
 
         public UserRepository()
@@ -41,9 +49,9 @@ namespace Project.Repository
 
         #region Methods
 
-        public List<UserEntity> Get()
+        public List<IUser> Get()
         {
-            return UserRepository.Storage;
+            return new List<IUser>(Mapper.Map<List<User>>(UserRepository.Storage));
         }
 
         #endregion Methods

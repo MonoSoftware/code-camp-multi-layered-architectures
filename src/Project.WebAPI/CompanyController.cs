@@ -1,5 +1,7 @@
-﻿using Project.Service;
+﻿using AutoMapper;
+using Project.Service.Common;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Web.Http;
 
@@ -9,7 +11,7 @@ namespace Project.WebAPI
     {
         #region Constructors
 
-        public CompanyController(CompanyService service)
+        public CompanyController(ICompanyService service)
         {
             this.Service = service;
         }
@@ -18,7 +20,7 @@ namespace Project.WebAPI
 
         #region Properties
 
-        public CompanyService Service { get; set; }
+        public ICompanyService Service { get; set; }
 
         #endregion Properties
 
@@ -28,9 +30,26 @@ namespace Project.WebAPI
         [Route("companies")]
         public HttpResponseMessage Get()
         {
-            return Request.CreateResponse(Service.Get());
+            return Request.CreateResponse(Mapper.Map<List<Company>>(Service.Get()));
         }
 
         #endregion Methods
+
+        #region Classes
+
+        public class Company
+        {
+            #region Properties
+
+            public string Description { get; set; }
+
+            public Guid Id { get; set; }
+
+            public string Name { get; set; }
+
+            #endregion Properties
+        }
+
+        #endregion Classes
     }
 }
